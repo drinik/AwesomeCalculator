@@ -117,12 +117,19 @@ public class MainAcitivity extends AppCompatActivity implements OnCalculatorItem
                 preText = "";
                 mLastActionableCalculatorItemJustClicked = false;
             }
+            if ((mTextView.getText().toString().equals("-0") && item != CalculatorItem.DECIMAL) || mLastActionableCalculatorItemJustClicked) {
+                preText = "-";
+                mLastActionableCalculatorItemJustClicked = false;
+            }
 
             mTextView.setText(adjustCalculation(preText + item.getValue()));
 
             String preCalcText = mTextViewCalculation.getText().toString();
             if (preCalcText.equals("0")) {
                 preCalcText = "";
+            }
+            if (preCalcText.equals("-0") && item != CalculatorItem.DECIMAL) {
+                preCalcText = "-";
             }
 
             String calcText;
